@@ -249,7 +249,7 @@ public static class MigrateCore
                                     i, vodtype1,
                                     matchNode.GetParamText("vod" + i.ToString() + "source"));
                             }
-                            else if (!string.IsNullOrWhiteSpace(vodtype2) && vodtype1 != "novod")
+                            else if (!string.IsNullOrWhiteSpace(vodtype2) && vodtype2 != "novod")
                             {
                                 vodText = string.Format("|vodgame{0}={{{{vod|gamenum={0}|vod={1}|source=url}}}}",
                                     i, vodtype2);
