@@ -243,13 +243,13 @@ public static class MigrateCore
                         {
                             string vodtype1 = matchNode.GetParamText("vod" + i.ToString());
                             string vodtype2 = matchNode.GetParamText("vodgame" + i.ToString());
-                            if (!string.IsNullOrWhiteSpace(vodtype1))
+                            if (!string.IsNullOrWhiteSpace(vodtype1) && vodtype1 != "novod")
                             {
                                 vodText = string.Format("|vodgame{0}={{{{vod|gamenum={0}|vod={1}|source={2}}}}}",
                                     i, vodtype1,
                                     matchNode.GetParamText("vod" + i.ToString() + "source"));
                             }
-                            else if (!string.IsNullOrWhiteSpace(vodtype2))
+                            else if (!string.IsNullOrWhiteSpace(vodtype2) && vodtype1 != "novod")
                             {
                                 vodText = string.Format("|vodgame{0}={{{{vod|gamenum={0}|vod={1}|source=url}}}}",
                                     i, vodtype2);
