@@ -224,8 +224,8 @@ public static class MigrateCore
                             || key.StartsWith("win")
                             || ((key.Length > 3) && key.StartsWith("vod")))
                             continue;
-
-                        if (key.StartsWith("date") && key != "date1")
+                        
+                        if (key.StartsWith("date") && key != "date1" && !string.IsNullOrWhiteSpace(matchNode.GetParamText(key)))
                         {
                             ConsoleEx.WriteLine(ConsoleColor.Red, "Irregular date format");
                             Console.ReadLine();
