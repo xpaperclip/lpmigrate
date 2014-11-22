@@ -34,9 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LxToolsBase, Version=1.0.5150.40324, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="LxToolsBase, Version=1.0.5365.28808, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\git\xpaperclip\lpcarnotools\zero\LpCarnoLib\bin\Debug\LxToolsBase.dll</HintPath>
+      <HintPath>..\..\..\LxTools\src\LxToolsBase\bin\Debug\LxToolsBase.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
