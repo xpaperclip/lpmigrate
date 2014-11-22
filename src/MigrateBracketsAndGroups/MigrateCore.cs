@@ -333,7 +333,7 @@ public static class MigrateCore
                 match.MatchVar = xs[2];
                 match.P1 = ParseBracketLine(node, match.P1Var);
                 match.P2 = ParseBracketLine(node, match.P2Var);
-                if (!(match.P1.Id == null && match.P2.Id == null))
+                if (!(string.IsNullOrWhiteSpace(match.P1.Id) && string.IsNullOrWhiteSpace(match.P2.Id)))
                     info.Matches.Add(match.MatchVar, match);
             }
         }
