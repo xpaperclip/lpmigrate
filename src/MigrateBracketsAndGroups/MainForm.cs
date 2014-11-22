@@ -33,6 +33,7 @@ public partial class MainForm : Form
             if (LiquipediaClient.IsValidLiquipediaLink(text))
             {
                 txtLink.Text = text;
+                txtLink.Select(text.Length, 0);
             }
             else
             {

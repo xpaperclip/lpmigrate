@@ -34,16 +34,16 @@
             // txtLink
             // 
             this.txtLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLink.Location = new System.Drawing.Point(15, 56);
+            this.txtLink.Location = new System.Drawing.Point(15, 64);
             this.txtLink.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtLink.Name = "txtLink";
-            this.txtLink.Size = new System.Drawing.Size(325, 23);
+            this.txtLink.Size = new System.Drawing.Size(401, 23);
             this.txtLink.TabIndex = 2;
             // 
             // btnGo
             // 
             this.btnGo.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnGo.Location = new System.Drawing.Point(265, 93);
+            this.btnGo.Location = new System.Drawing.Point(341, 101);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(75, 23);
             this.btnGo.TabIndex = 3;
@@ -55,7 +55,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 28);
+            this.label1.Location = new System.Drawing.Point(12, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(278, 15);
             this.label1.TabIndex = 4;
@@ -67,7 +67,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(360, 145);
+            this.ClientSize = new System.Drawing.Size(436, 161);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGo);
             this.Controls.Add(this.txtLink);
