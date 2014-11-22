@@ -32,18 +32,31 @@ public partial class MainForm : Form
             string text = e.Data.GetData(DataFormats.Text).ToString();
             if (LiquipediaClient.IsValidLiquipediaLink(text))
             {
-                var thread = new System.Threading.Thread(() =>
-                {
-                    string wikicode = LiquipediaClient.GetWikicode(text);
-                    var bracket = MigrateCore.AnalyzeAndMigrate(wikicode);
-                    UI.ShowDialog(new UIDocument("Migrated", bracket));
-                });
-                thread.Start();
+                txtLink.Text = text;
             }
             else
             {
-                MessageBox.Show("Did not recognise Liquipedia text.");
+                MessageBox.Show("Did not recognise Liquipedia link.");
             }
+        }
+    }
+
+    private void btnGo_Click(object sender, EventArgs e)
+    {
+        string text = txtLink.Text;
+        if (LiquipediaClient.IsValidLiquipediaLink(text))
+        {
+            var thread = new System.Threading.Thread(() =>
+            {
+                string wikicode = LiquipediaClient.GetWikicode(text);
+                var bracket = MigrateCore.AnalyzeAndMigrate(wikicode);
+                UI.ShowDialog(new UIDocument("Migrated", bracket));
+            });
+            thread.Start();
+        }
+        else
+        {
+            MessageBox.Show("Did not recognise Liquipedia link.");
         }
     }
 }
