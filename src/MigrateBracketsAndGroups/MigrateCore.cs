@@ -222,14 +222,15 @@ public static class MigrateCore
                         if (special.Contains(key)
                             || key.StartsWith("map")
                             || key.StartsWith("win")
+                            || key.StartsWith("date")
                             || ((key.Length > 3) && key.StartsWith("vod")))
                             continue;
-                        
-                        if (key.StartsWith("date") && key != "date1" && !string.IsNullOrWhiteSpace(matchNode.GetParamText(key)))
-                        {
-                            ConsoleEx.WriteLine(ConsoleColor.Red, "Irregular date format");
-                            Console.ReadLine();
-                        }
+
+                        //if (key.StartsWith("date") && key != "date1" && !string.IsNullOrWhiteSpace(matchNode.GetParamText(key)))
+                        //{
+                        //    ConsoleEx.WriteLine(ConsoleColor.Red, "Irregular date format");
+                        //    Console.ReadLine();
+                        //}
 
                         WriteParamIfNotNull(sw, matchNode, key);
                     }
@@ -256,6 +257,9 @@ public static class MigrateCore
                             }
 
                             //{{vod|gamenum=1|vod={{{vod1|}}}|source={{{vod1source|}}}}}
+
+                            if (i != 1)
+                                WriteParamIfNotNull(sw, matchNode, "date" + i.ToString());
 
                             sw.WriteLine("|map{0}={1} |map{0}win={2} {3}",
                                 i,
