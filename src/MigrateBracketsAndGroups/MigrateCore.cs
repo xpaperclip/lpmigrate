@@ -198,9 +198,9 @@ public static class MigrateCore
 
                     sw.WriteLine("|{0}details={{{{BracketMatchSummary", match.MatchVar);
                     if (matchNode.HasParam("date"))
-                        sw.WriteLine("|date=" + matchNode.GetParamText("date"));
+                        sw.WriteLine("|date=" + StripFormatting(matchNode.GetParamText("date")));
                     else if (matchNode.HasParam("date1"))
-                        sw.WriteLine("|date=" + matchNode.GetParamText("date1"));
+                        sw.WriteLine("|date=" + StripFormatting(matchNode.GetParamText("date1")));
                     else
                     {
                         // if the last text was in italics, it's probably the date
@@ -209,7 +209,7 @@ public static class MigrateCore
                         var lt = match.MatchInfo.LastText;
                         if (lt.StartsWith("''") && lt.EndsWith("''"))
                         {
-                            ltdate = lt.Substring(2, lt.Length - 4);
+                            ltdate = StripFormatting(lt);
                         }
 
                         if (ltdate != null && MessageBox.Show("Use last text (" + ltdate + ") as date?", "No date field", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -281,6 +281,14 @@ public static class MigrateCore
             return sw.ToString();
         }
     }
+    private static string StripFormatting(string s)
+    {
+        if (s.StartsWith("'''") && s.EndsWith("'''"))
+            return s.Substring(3, s.Length - 6);
+        if (s.StartsWith("''") && s.EndsWith("''"))
+            return s.Substring(2, s.Length - 4);
+        return s;
+    }
 
     private static void WriteBracketLine(StringWriter sw, string P1Var, BracketLine P1, string MatchInfoFlag)
     {
@@ -294,9 +302,17 @@ public static class MigrateCore
 
     private static void WriteParamIfNotNull(TextWriter tw, WikiTemplateNode node, string param)
     {
+        WriteParamIfNotNull(tw, node, param, true);
+    }
+    private static void WriteParamIfNotNull(TextWriter tw, WikiTemplateNode node, string param, bool stripFormatting)
+    {
         var value = node.GetParamText(param);
         if (!string.IsNullOrWhiteSpace(value))
+        {
+            if (stripFormatting)
+                value = StripFormatting(value);
             tw.WriteLine("|{0}={1}", param, value);
+        }
     }
 
     private static string GetLookup(BracketLine p1, BracketLine p2)
