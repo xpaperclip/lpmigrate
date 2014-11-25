@@ -58,9 +58,9 @@ public static class MigrateCore
 
     public static string AnalyzeAndMigrate(string wikicode)
     {
-        var wiki = WikiParser.Parse(wikicode);
+        var wiki = WikiParser.Parse(wikicode, true);
 
-        var interested = new string[] { "Match", "MatchSummary", "GameSet" };
+        var interested = new string[] { "Match", "MatchSummary", "GameSet", "Vod", "Vodlink" };
         var bracket = new BracketInfo();
         var matches = new List<MatchInfo>();
         var matchesLookup = new Dictionary<string, MatchInfo>();

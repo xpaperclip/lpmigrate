@@ -51,12 +51,24 @@ namespace LxTools.Liquipedia.Parsing2
     {
         public static IEnumerable<WikiNode> Parse(string page)
         {
+            return Parse(page, false);
+        }
+        public static IEnumerable<WikiNode> Parse(string page, bool ignoreTables)
+        {
             int idx = 0;
             while (idx < page.Length)
             {
                 int start = idx;
                 int type, delta;
-                idx = page.FirstIndexOf(idx, out type, out delta, "<!--", "{|", "{{", "=====", "====", "===", "==");
+                if (ignoreTables)
+                {
+                    idx = page.FirstIndexOf(idx, out type, out delta, "<!--", "{{", "=====", "====", "===", "==");
+                    if (type >= 1) type++;
+                }
+                else
+                {
+                    idx = page.FirstIndexOf(idx, out type, out delta, "<!--", "{|", "{{", "=====", "====", "===", "==");
+                }
 
                 if (type != -1)
                 {
