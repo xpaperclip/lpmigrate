@@ -152,16 +152,14 @@ public static class MigrateCore
         using (var sw = new StringWriter())
         using (var fmtsr = new StreamReader(fmtfile))
         {
-            sw.WriteLine("{{" + bracket.Name);
+            sw.WriteLine("{{" + bracket.Name + " ");
 
-            // check if |Rx exist
+            // bracket sundries
+            WriteParamIfNotNull(sw, bracket.Node, "column-width");
+            WriteParamIfNotNull(sw, bracket.Node, "hideroundtitles");
             for (int i = 1; i <= 7; i++)
             {
-                var Rtext = bracket.Node.GetParamText("R" + i.ToString());
-                if (Rtext != null)
-                {
-                    sw.WriteLine("|R{0}={1}", i, Rtext);
-                }
+                WriteParamIfNotNull(sw, bracket.Node, "R" + i.ToString());
             }
             sw.WriteLine();
 
