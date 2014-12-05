@@ -34,6 +34,13 @@ public partial class MainForm : Form
             {
                 txtLink.Text = text;
                 txtLink.Select(text.Length, 0);
+
+                var thread = new System.Threading.Thread(() =>
+                {
+                    string wikicode = LiquipediaClient.GetWikicode(text);
+                    this.Invoke(new Action(() => { txtWikicode.Text = wikicode.Replace("\n", "\r\n"); }));
+                });
+                thread.Start();
             }
             else
             {
@@ -42,7 +49,7 @@ public partial class MainForm : Form
         }
     }
 
-    private void btnGo_Click(object sender, EventArgs e)
+    private void btnFetch_Click(object sender, EventArgs e)
     {
         string text = txtLink.Text;
         if (LiquipediaClient.IsValidLiquipediaLink(text))
@@ -50,8 +57,7 @@ public partial class MainForm : Form
             var thread = new System.Threading.Thread(() =>
             {
                 string wikicode = LiquipediaClient.GetWikicode(text);
-                var bracket = MigrateCore.AnalyzeAndMigrate(wikicode);
-                UI.ShowDialog(new UIDocument("Migrated", bracket));
+                this.Invoke(new Action(() => { txtWikicode.Text = wikicode.Replace("\n","\r\n"); }));
             });
             thread.Start();
         }
@@ -59,5 +65,27 @@ public partial class MainForm : Form
         {
             MessageBox.Show("Did not recognise Liquipedia link.");
         }
+    }
+
+    private void btnGoBrackets_Click(object sender, EventArgs e)
+    {
+        var thread = new System.Threading.Thread(() =>
+        {
+            string wikicode = txtWikicode.Text;
+            var bracket = MigrateCore.AnalyzeAndMigrateBrackets(wikicode);
+            UI.ShowDialog(new UIDocument("Migrated", bracket));
+        });
+        thread.Start();
+    }
+
+    private void btnGoGroups_Click(object sender, EventArgs e)
+    {
+        var thread = new System.Threading.Thread(() =>
+        {
+            string wikicode = txtWikicode.Text;
+            var bracket = MigrateCore.AnalyzeAndMigrateGroups(wikicode);
+            UI.ShowDialog(new UIDocument("Migrated", bracket));
+        });
+        thread.Start();
     }
 }

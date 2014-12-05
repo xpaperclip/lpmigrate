@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using LxTools;
+using LxTools.Liquipedia;
 
 class Program
 {
@@ -10,6 +11,20 @@ class Program
     {
         Application.EnableVisualStyles();
         Application.Run(new MainForm());
+    }
+
+    public static string Get(string page)
+    {
+        Directory.CreateDirectory("cache");
+        string local = Path.Combine("cache", page.Replace(" ", "_").Replace("/", "!"));
+        if (File.Exists(local))
+            return File.ReadAllText(local);
+
+        string url = "http://wiki.teamliquid.net/starcraft/" + page;
+        string wikicode = LiquipediaClient.GetWikicode(url);
+        File.WriteAllText(local, wikicode);
+
+        return wikicode;
     }
 
     static void MainX(string[] args)
@@ -24,9 +39,9 @@ class Program
 
             ConsoleEx.WriteLine(ConsoleColor.White, ConsoleColor.Blue, page);
 
-            string wikicode = MigrateCore.Get(page);
+            string wikicode = Get(page);
 
-            var bracket = MigrateCore.AnalyzeAndMigrate(wikicode);
+            var bracket = MigrateCore.AnalyzeAndMigrateBrackets(wikicode);
             UI.ShowDialog(new UIDocument("Bracket", bracket));
 
             Console.WriteLine();
