@@ -69,23 +69,15 @@ public partial class MainForm : Form
 
     private void btnGoBrackets_Click(object sender, EventArgs e)
     {
-        var thread = new System.Threading.Thread(() =>
-        {
-            string wikicode = txtWikicode.Text;
-            var bracket = MigrateCore.AnalyzeAndMigrateBrackets(wikicode);
-            UI.ShowDialog(new UIDocument("Migrated", bracket));
-        });
-        thread.Start();
+        string wikicode = txtWikicode.Text;
+        var bracket = MigrateCore.AnalyzeAndMigrateBrackets(wikicode);
+        UI.ShowDialog(new UIDocument("Migrated", bracket));
     }
 
     private void btnGoGroups_Click(object sender, EventArgs e)
     {
-        var thread = new System.Threading.Thread(() =>
-        {
-            string wikicode = txtWikicode.Text;
-            var bracket = MigrateCore.AnalyzeAndMigrateGroups(wikicode);
-            UI.ShowDialog(new UIDocument("Migrated", bracket));
-        });
-        thread.Start();
+        string wikicode = txtWikicode.Text;
+        var bracket = MigrateCore.AnalyzeAndMigrateGroups(wikicode);
+        UI.ShowDialog(new UIDocument("Migrated", bracket));
     }
 }

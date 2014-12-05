@@ -30,7 +30,7 @@
         this.btnGoBrackets = new System.Windows.Forms.Button();
         this.label1 = new System.Windows.Forms.Label();
         this.btnFetch = new System.Windows.Forms.Button();
-        this.txtWikicode = new System.Windows.Forms.TextBox();
+        this.txtWikicode = new System.Windows.Forms.RichTextBox();
         this.panel1 = new System.Windows.Forms.Panel();
         this.panel2 = new System.Windows.Forms.Panel();
         this.btnGoGroups = new System.Windows.Forms.Button();
@@ -86,7 +86,7 @@
         this.txtWikicode.Location = new System.Drawing.Point(0, 61);
         this.txtWikicode.Multiline = true;
         this.txtWikicode.Name = "txtWikicode";
-        this.txtWikicode.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+        this.txtWikicode.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Both;
         this.txtWikicode.Size = new System.Drawing.Size(657, 320);
         this.txtWikicode.TabIndex = 6;
         // 
@@ -154,7 +154,7 @@
     private System.Windows.Forms.Button btnGoBrackets;
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Button btnFetch;
-    private System.Windows.Forms.TextBox txtWikicode;
+    private System.Windows.Forms.RichTextBox txtWikicode;
     private System.Windows.Forms.Panel panel1;
     private System.Windows.Forms.Panel panel2;
     private System.Windows.Forms.Button btnGoGroups;
